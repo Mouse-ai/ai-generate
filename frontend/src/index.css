@@ -1,0 +1,300 @@
+/* ===== Подключение шрифта Inter ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* Добавьте в самое начало после @import */
+/* В начало файла добавьте/обновите */
+#app {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120vh;
+}
+
+/* У карточки уменьшим padding на ПК */
+.card {
+  max-width: 800px;
+  width: 90%;
+  margin: 20px auto;
+  max-width: 80%;
+  padding: 30px; /* было 40px */
+  /* остальное без изменений */
+}
+
+.prompt-area {
+  display: flex;
+  gap: 12px;
+  /* убираем flex-wrap, оставляем в одну строку */
+}
+
+input {
+  flex: 1;                     /* занимает оставшееся место */
+  min-width: 0;                /* разрешаем сжиматься меньше контента */
+  padding: 16px 20px;
+  /* остальное без изменений */
+}
+
+button {
+  padding: 16px 16px;          /* было 16px 24px */
+  white-space: nowrap;         /* текст кнопки не переносится */
+  flex-shrink: 0;              /* запрещаем кнопке сжиматься */
+  /* остальное без изменений */
+}
+/* В медиа-запросе для мобильных можно добавить: */
+@media (max-width: 768px) {
+  button {
+    font-size: 0.95rem; /* чуть меньше шрифт */
+    padding: 14px 20px;
+  }
+}
+/* ===== Сброс отступов и базовые стили ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Анимированный градиент */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Лёгкая текстура шума поверх градиента */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+/* ===== Карточка ===== */
+.card {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  width: 90%;
+  margin: 20px auto;
+  padding: 40px;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.25);
+}
+
+h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #1e2b3a, #2c3e50);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.prompt-area {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+input {
+  flex: 1;
+  padding: 16px 20px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+  transition: all 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2), inset 0 2px 5px rgba(0,0,0,0.05);
+}
+
+button {
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+button::before {
+  content: "✨";
+  font-size: 1.2rem;
+  transition: transform 0.2s;
+}
+
+button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0056b3, #004099);
+  transform: scale(1.02);
+  box-shadow: 0 12px 25px rgba(0, 123, 255, 0.4);
+}
+
+button:hover:not(:disabled)::before {
+  transform: rotate(15deg);
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  background: linear-gradient(135deg, #a0a0a0, #808080);
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+button:disabled::before {
+  content: "⏳";
+}
+
+.result {
+  min-height: 120px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  border-left: 6px solid #007bff;
+  word-break: break-word;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #1a1a1a;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.03), 0 5px 15px rgba(0,0,0,0.05);
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.loader::before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  border: 3px solid #007bff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error {
+  color: #d32f2f;
+  background: rgba(211, 47, 47, 0.1);
+  padding: 12px 16px;
+  border-radius: 16px;
+  border-left: 4px solid #d32f2f;
+}
+
+.generated-text {
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ===== Адаптация для мобильных ===== */
+@media (max-width: 768px) {
+  .card {
+    width: 95%;
+    padding: 25px;
+    margin: 15px auto;
+    border-radius: 24px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .prompt-area {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  input, button {
+    width: 100%;
+  }
+
+  button {
+    white-space: normal;
+    padding: 14px 20px;
+  }
+
+  .result {
+    padding: 18px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    backdrop-filter: blur(12px);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+}
